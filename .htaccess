@@ -1,0 +1,61 @@
+Options +FollowSymLinks -SymLinksIfOwnerMatch 
+RewriteEngine On
+RewriteBase /
+<ifModule mod_headers.c>
+Header set H2EarlyHints On
+Header set H2Push On
+Header set KeepAlive On
+AddType application/x-httpd-php .html .htm
+Header set Connection keep-alive
+Header set Cache-Control "no-cache, no-store, must-revalidate"
+Header set Pragma "no-cache"
+Header set Expires 0
+Header unset Pragma
+Header unset Cache-Control
+Header unset Last-Modified
+</ifModule>
+<FilesMatch "\.(css|flv|gif|htm|html|ico|jpe|jpeg|jpg|js|mp3|mp4|png|pdf|swf|txt)$">
+<IfModule mod_expires.c>
+ExpiresActive Off
+</IfModule>
+</FilesMatch>
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteCond %{SERVER_PORT} 80
+RewriteRule ^(.*)$ https://757hamptonroads.com/$1 [R,L]
+RewriteCond %{REQUEST_FILENAME} !-f 
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule . /control_module/controler.php [L]
+</IfModule>
+
+# BEGIN cPanel-generated php ini directives, do not edit
+# Manual editing of this file may result in unexpected behavior.
+# To make changes to this file, use the cPanel MultiPHP INI Editor (Home >> Software >> MultiPHP INI Editor)
+# For more information, read our documentation (https://go.cpanel.net/EA4ModifyINI)
+<IfModule php5_module>
+   php_flag asp_tags Off
+   php_flag display_errors Off
+   php_value max_execution_time 100
+   php_value max_input_time 60
+   php_value max_input_vars 1000
+   php_value memory_limit 500M
+   php_value post_max_size 32M
+   php_value session.gc_maxlifetime 1440
+   php_value session.save_path "/var/cpanel/php/sessions/ea-php56"
+   php_value upload_max_filesize 128M
+   php_flag zlib.output_compression On
+</IfModule>
+<IfModule lsapi_module>
+   php_flag asp_tags Off
+   php_flag display_errors Off
+   php_value max_execution_time 100
+   php_value max_input_time 60
+   php_value max_input_vars 1000
+   php_value memory_limit 500M
+   php_value post_max_size 32M
+   php_value session.gc_maxlifetime 1440
+   php_value session.save_path "/var/cpanel/php/sessions/ea-php56"
+   php_value upload_max_filesize 128M
+   php_flag zlib.output_compression On
+</IfModule>
+# END cPanel-generated php ini directives, do not edit
